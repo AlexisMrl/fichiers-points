@@ -1,0 +1,32 @@
+#!/bin/sh
+
+image() {
+	geometry="$(($2-5))x$3"
+	chafa "~/Images/dummy" -f sixel -s "$geometry" --animate false
+}
+
+batorcat() {
+	file="$1"
+	shift
+	if command -v bat > /dev/null 2>&1
+	then
+		bat --color=always --style=plain --pager=never "$file" "$@"
+	else
+		cat "$file"
+	fi
+}
+
+case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
+	*.jpg|*.jpeg|*.png)
+		image "$1" "$2" "$3" "$4" "$5"
+	;;
+	*.pdf)
+		pdftotext -f 0 -l 1 "$1" - 
+		# change to image preview if one day i succeed
+	;;
+  *)
+		batorcat "$1"
+		#bat --color=always --style=plain --pager=never "$file" "$@"
+	;;
+esac
+exit 0

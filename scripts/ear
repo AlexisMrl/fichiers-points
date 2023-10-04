@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+case $1 in
+    +)
+  	pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
+    -)
+    pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
+    "++")
+	  pactl set-sink-volume @DEFAULT_SINK@ +10% ;;
+    "--")
+    pactl set-sink-volume @DEFAULT_SINK@ -10% ;;
+    "+++")
+	  pactl set-sink-volume @DEFAULT_SINK@ +20% ;;
+    "---")
+    pactl set-sink-volume @DEFAULT_SINK@ -20% ;;
+    *)
+    pactl get-sink-volume @DEFAULT_SINK@ ;;
+esac 

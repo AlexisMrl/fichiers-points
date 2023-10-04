@@ -1,0 +1,11 @@
+#!/usr/bin/bash 
+# check if bw is unlocked, unlock it, start wofi
+
+rbw unlocked
+if [ $? -eq 1 ]
+then
+  PASS=`wofi --show dmenu -P`
+  echo $PASS
+  rbw unlocked `wtype $PASS -P return`
+fi
+rofi-rbw -a type

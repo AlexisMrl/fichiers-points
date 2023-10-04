@@ -1,0 +1,48 @@
+#!/usr/bin/bash 
+
+# abstraction for everything eye related:
+# backlight, night light, dark/light theme
+
+get_theme() {
+  gsettings get org.gnome.desktop.interface color-scheme    
+}
+set_theme() {
+  gsettings set org.gnome.desktop.interface color-scheme $1
+}
+
+case $1 in
+  "+")
+ 	  light -T 1.1 ;;
+  "-")
+    light -T 0.9 ;;
+  "++")
+	  light -T 2 ;;
+  "--")
+    light -T 0.5 ;;
+  "+++"|"max")
+ 	  light -S 100 ;;
+  "---"|"min")
+    light -S 0 ;;
+
+#gammastep
+  "night")
+    if pgrep gammastep; then
+      killall gammastep
+    else
+      gammastep -O 4000 > /dev/null 2>&1 &
+    fi ;;
+
+#theme
+  "d"|"dark")
+    set_theme prefer-dark
+    bar dark
+    pkill -USR1 bash ;;
+  "l"|"light")
+    set_theme prefer-light
+    bar light
+    pkill -USR1 bash ;;
+    
+#else, give info
+  *)
+    echo -e "backlight: $(light)\ntheme: $(get_theme)"
+esac 

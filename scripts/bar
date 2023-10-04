@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+BAR_PATH=~/.config/waybar/style.css
+case $1 in
+    "toggle")
+        pkill -SIGUSR1 waybar ;;
+    "reload")
+        pkill -SIGUSR2 waybar ;;
+    "light")
+        sed -i "s/dark/light/" $BAR_PATH
+        pkill -SIGUSR2 waybar ;;
+    "dark")
+        sed -i "s/light/dark/" $BAR_PATH
+        pkill -SIGUSR2 waybar ;;
+    *)
+        waybar ;;
+esac 
