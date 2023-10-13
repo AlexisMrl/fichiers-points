@@ -1,6 +1,13 @@
+-- wm --
 dwl
+foot
 swaybg
 waybar
 
+-- tools/io -- 
 light
 gammastep
+
+-- apps --
+neovim
+qutebrowser
