@@ -1,0 +1,42 @@
+@import "colors.dark";
+
+@define-color becareful rgb(255, 255, 0);
+@define-color dosomething rgb(255, 0, 0);
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-size: 20px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @bg;
+    color: @text;
+}
+
+tooltip {
+  background: @bg;
+  border: 1px solid @text;
+  border-radius: 4px;
+}
+tooltip label {
+  color: @text;
+  text-shadow: 0 0;
+}
+
+#clock, #backdark, #battery {
+    padding: 0 10px;
+}
+
+#battery.low {
+    color: @text;
+    background-color: @becareful;
+}
+
+#battery.verylow {
+    color: @bg;
+    background-color: @dosomething;
+}
+

@@ -1,0 +1,3 @@
+/* dark */
+@define-color text rgb(255, 255, 255);
+@define-color bg rgba(0, 0, 0, 0.8);

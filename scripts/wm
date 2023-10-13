@@ -2,4 +2,4 @@
 #wp &
 #swaybg -i ~/Images/webb_deep_field.jpg -m fill &
 
-exec dwl -s 'bar;wp'
+exec dwl -s 'wp;bar'
